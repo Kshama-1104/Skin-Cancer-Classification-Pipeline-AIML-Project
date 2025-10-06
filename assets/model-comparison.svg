@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5576c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bar3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bar4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bar5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="600" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="bold" 
+        fill="#1e293b" text-anchor="middle">
+    Top 5 Model Performance Comparison
+  </text>
+  <text x="600" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="16" 
+        fill="#64748b" text-anchor="middle">
+    Binary Classification Accuracy on Skin Lesion Dataset
+  </text>
+  
+  <!-- Grid lines -->
+  <g stroke="#cbd5e1" stroke-width="1" opacity="0.3">
+    <line x1="150" y1="150" x2="150" y2="550"/>
+    <line x1="150" y1="550" x2="1100" y2="550"/>
+    
+    <line x1="150" y1="450" x2="1100" y2="450" stroke-dasharray="5,5"/>
+    <line x1="150" y1="350" x2="1100" y2="350" stroke-dasharray="5,5"/>
+    <line x1="150" y1="250" x2="1100" y2="250" stroke-dasharray="5,5"/>
+    <line x1="150" y1="150" x2="1100" y2="150" stroke-dasharray="5,5"/>
+  </g>
+  
+  <!-- Y-axis labels -->
+  <text x="130" y="555" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">85%</text>
+  <text x="130" y="455" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">88%</text>
+  <text x="130" y="355" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">91%</text>
+  <text x="130" y="255" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">94%</text>
+  <text x="130" y="155" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">97%</text>
+  
+  <!-- Bar 1: ViT-16 (97.70%) -->
+  <!-- Scale: 85% = y:550, 97% = y:150, so 400px for 12% range -->
+  <!-- 97.70% → height = (97.70-85)*33.33 = 423.3px → y = 550-423.3 = 126.7 -->
+  <g transform="translate(230, 0)">
+    <rect x="-60" y="126.7" width="120" height="423.3" rx="8" fill="url(#bar1)" filter="url(#shadow)"/>
+    <text x="0" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="#f5576c" text-anchor="middle">97.70%</text>
+    <text x="0" y="585" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Vision</text>
+    <text x="0" y="605" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Transformer</text>
+    <text x="0" y="625" font-family="'Segoe UI', Arial, sans-serif" font-size="12" 
+          fill="#64748b" text-anchor="middle">(ViT-16)</text>
+    <!-- Trophy -->
+    <text x="0" y="90" font-size="24">🥇</text>
+  </g>
+  
+  <!-- Bar 2: Derma ViT (91.97%) -->
+  <!-- 91.97% → height = (91.97-85)*33.33 = 232.3px → y = 550-232.3 = 317.7 -->
+  <g transform="translate(430, 0)">
+    <rect x="-60" y="317.7" width="120" height="232.3" rx="8" fill="url(#bar2)" filter="url(#shadow)"/>
+    <text x="0" y="301" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="#fa709a" text-anchor="middle">91.97%</text>
+    <text x="0" y="585" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Derma</text>
+    <text x="0" y="605" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">ViT</text>
+    <text x="0" y="625" font-family="'Segoe UI', Arial, sans-serif" font-size="12" 
+          fill="#64748b" text-anchor="middle">(Custom)</text>
+    <text x="0" y="281" font-size="24">🥈</text>
+  </g>
+  
+  <!-- Bar 3: Swin + AMP (91.36%) -->
+  <!-- 91.36% → height = (91.36-85)*33.33 = 212px → y = 550-212 = 338 -->
+  <g transform="translate(630, 0)">
+    <rect x="-60" y="338" width="120" height="212" rx="8" fill="url(#bar3)" filter="url(#shadow)"/>
+    <text x="0" y="322" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="#4facfe" text-anchor="middle">91.36%</text>
+    <text x="0" y="585" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Swin</text>
+    <text x="0" y="605" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Transformer</text>
+    <text x="0" y="625" font-family="'Segoe UI', Arial, sans-serif" font-size="12" 
+          fill="#64748b" text-anchor="middle">(+ AMP)</text>
+    <text x="0" y="302" font-size="24">🥉</text>
+  </g>
+  
+  <!-- Bar 4: ResNet50 + CBAM (90.76%) -->
+  <!-- 90.76% → height = (90.76-85)*33.33 = 192px → y = 550-192 = 358 -->
+  <g transform="translate(830, 0)">
+    <rect x="-60" y="358" width="120" height="192" rx="8" fill="url(#bar4)" filter="url(#shadow)"/>
+    <text x="0" y="342" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="#43e97b" text-anchor="middle">90.76%</text>
+    <text x="0" y="585" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">ResNet50</text>
+    <text x="0" y="605" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">+ CBAM</text>
+    <text x="0" y="625" font-family="'Segoe UI', Arial, sans-serif" font-size="12" 
+          fill="#64748b" text-anchor="middle">(Attention)</text>
+  </g>
+  
+  <!-- Bar 5: DenseNet201 + Nadam (90.00%) -->
+  <!-- 90.00% → height = (90-85)*33.33 = 166.67px → y = 550-166.67 = 383.33 -->
+  <g transform="translate(1030, 0)">
+    <rect x="-60" y="383.33" width="120" height="166.67" rx="8" fill="url(#bar5)" filter="url(#shadow)"/>
+    <text x="0" y="367" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="#667eea" text-anchor="middle">90.00%</text>
+    <text x="0" y="585" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">DenseNet201</text>
+    <text x="0" y="605" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">+ Nadam</text>
+    <text x="0" y="625" font-family="'Segoe UI', Arial, sans-serif" font-size="12" 
+          fill="#64748b" text-anchor="middle">(Optimizer)</text>
+  </g>
+  
+  <!-- Y-axis label -->
+  <text x="50" y="350" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" 
+        fill="#475569" text-anchor="middle" transform="rotate(-90, 50, 350)">
+    Accuracy (%)
+  </text>
+  
+  <!-- Legend -->
+  <g transform="translate(150, 660)">
+    <text x="0" y="0" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">
+      <tspan font-weight="bold">Note:</tspan> All models tested on binary classification (Benign vs Malignant) with identical preprocessing
+    </text>
+  </g>
+</svg>

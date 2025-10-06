@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="600" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="bold" 
+        fill="#1e293b" text-anchor="middle">
+    Dataset Distribution
+  </text>
+  <text x="450" y="70" font-family="'Segoe UI', Arial, sans-serif" font-size="16" 
+        fill="#64748b" text-anchor="middle">
+    Total: 90,297 Dermoscopic Images
+  </text>
+  
+  <!-- Pie Chart Center -->
+  <g transform="translate(300, 320)">
+    <!-- Segment 1: Binary Dataset (3,297) - 3.65% of 90k → 13.14° (but visually show larger) -->
+    <!-- Let's make it visually proportional to show better -->
+    <!-- Binary: 3,297, Multi: 37,000, Aug: 50,000 -->
+    <!-- Total shown: 90,297 -->
+    <!-- Binary: 3.65%, Multi: 40.98%, Aug: 55.37% -->
+    
+    <!-- Segment 1: Binary Dataset - 40° (enlarged for visibility) -->
+    <path d="M 0,0 L 0,-150 A 150,150 0 0,1 88.3,-123.7 Z" 
+          fill="url(#grad1)" filter="url(#shadow)" stroke="white" stroke-width="3"/>
+    
+    <!-- Segment 2: Multi-Class Dataset - 140° -->
+    <path d="M 0,0 L 88.3,-123.7 A 150,150 0 0,1 88.3,123.7 Z" 
+          fill="url(#grad2)" filter="url(#shadow)" stroke="white" stroke-width="3"/>
+    
+    <!-- Segment 3: Augmented - 180° -->
+    <path d="M 0,0 L 88.3,123.7 A 150,150 0 1,1 0,-150 Z" 
+          fill="url(#grad3)" filter="url(#shadow)" stroke="white" stroke-width="3"/>
+    
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="70" fill="white"/>
+    <text x="0" y="-10" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Total</text>
+    <text x="0" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="bold" 
+          fill="#667eea" text-anchor="middle">90,297</text>
+    <text x="0" y="35" font-family="'Segoe UI', Arial, sans-serif" font-size="12" 
+          fill="#64748b" text-anchor="middle">Images</text>
+  </g>
+  
+  <!-- Legend and Details -->
+  <g transform="translate(520, 200)">
+    <!-- Binary Dataset -->
+    <rect x="0" y="0" width="30" height="30" rx="5" fill="url(#grad1)"/>
+    <text x="45" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" 
+          fill="#1e293b">Binary Dataset</text>
+    <text x="45" y="30" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b">3,297 images (3.65%)</text>
+    <text x="45" y="48" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">2 Classes: Benign | Malignant</text>
+    
+    <!-- Multi-Class Dataset -->
+    <rect x="0" y="80" width="30" height="30" rx="5" fill="url(#grad2)"/>
+    <text x="45" y="95" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" 
+          fill="#1e293b">Multi-Class Dataset</text>
+    <text x="45" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b">37,000 images (40.98%)</text>
+    <text x="45" y="128" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">14 Lesion Categories</text>
+    
+    <!-- Augmented Samples -->
+    <rect x="0" y="160" width="30" height="30" rx="5" fill="url(#grad3)"/>
+    <text x="45" y="175" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" 
+          fill="#1e293b">Augmented Samples</text>
+    <text x="45" y="190" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#64748b">50,000+ images (55.37%)</text>
+    <text x="45" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">Synthetic via transformations</text>
+  </g>
+  
+  <!-- Data Split Info -->
+  <g transform="translate(100, 500)">
+    <rect x="0" y="0" width="700" height="80" rx="10" fill="white" stroke="#cbd5e1" stroke-width="2"/>
+    
+    <text x="350" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" 
+          fill="#1e293b" text-anchor="middle">Training Configuration</text>
+    
+    <g transform="translate(80, 45)">
+      <rect x="0" y="0" width="120" height="25" rx="5" fill="#667eea" opacity="0.2"/>
+      <text x="60" y="17" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+            fill="#667eea" text-anchor="middle">Train: 70%</text>
+    </g>
+    
+    <g transform="translate(240, 45)">
+      <rect x="0" y="0" width="120" height="25" rx="5" fill="#f093fb" opacity="0.2"/>
+      <text x="60" y="17" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+            fill="#f093fb" text-anchor="middle">Val: 15%</text>
+    </g>
+    
+    <g transform="translate(400, 45)">
+      <rect x="0" y="0" width="120" height="25" rx="5" fill="#4facfe" opacity="0.2"/>
+      <text x="60" y="17" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" 
+            fill="#4facfe" text-anchor="middle">Test: 15%</text>
+    </g>
+  </g>
+  
+  <!-- Additional Info -->
+  <g transform="translate(100, 120)">
+    <text x="0" y="0" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#475569">📊 Dataset Characteristics:</text>
+    <text x="0" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">• Image Format: JPEG/PNG</text>
+    <text x="0" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">• Resolution: 224×224 pixels (standardized)</text>
+    <text x="0" y="65" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">• Color Space: RGB</text>
+    <text x="0" y="85" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#64748b">• Source: Dermoscopic cameras</text>
+  </g>
+</svg>
