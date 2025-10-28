@@ -1,0 +1,20 @@
+{
+  "best_fitness": 1.7029202118865945,
+  "best_params": {
+    "clahe_prob": 0.9579318300512895,
+    "clahe_clip": 4.0,
+    "clahe_tile": [
+      16,
+      16
+    ],
+    "brightness": 1.0620518966070245,
+    "contrast": 1.4,
+    "saturation": 0.8155417941572705,
+    "hue": -0.021321571068713675,
+    "blur_sigma": 0.003146181978292155,
+    "sharpen": 1.0
+  },
+  "pop_size": 10,
+  "max_iter": 8,
+  "sample_images": 200
+}
