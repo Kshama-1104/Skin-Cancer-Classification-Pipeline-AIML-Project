@@ -19,21 +19,7 @@
 
 ---
 
-## 📋 Table of Contents
 
-- [Overview](#-project-overview)
-- [Key Highlights](#-key-highlights)
-- [Architecture & Results](#-architecture--results)
-- [Dataset Information](#-dataset-information)
-- [Experimental Framework](#-experimental-framework)
-- [Performance Metrics](#-performance-metrics)
-- [Installation & Usage](#-installation--usage)
-- [Repository Structure](#-repository-structure)
-- [Research Methodology](#-research-methodology)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
 
 ## 🎯 Project Overview
 
