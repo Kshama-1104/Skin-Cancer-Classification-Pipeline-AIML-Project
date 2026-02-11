@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="0" x2="1200" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="75" x2="1200" y2="75" stroke="white" stroke-width="0.5"/>
+    <line x1="0" y1="150" x2="1200" y2="150" stroke="white" stroke-width="0.5"/>
+    <line x1="0" y1="225" x2="1200" y2="225" stroke="white" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="300" stroke="white" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="300" stroke="white" stroke-width="0.5"/>
+    <line x1="900" y1="0" x2="900" y2="300" stroke="white" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Medical icon (left side) -->
+  <g transform="translate(100, 150)">
+    <!-- Microscope icon -->
+    <circle cx="0" cy="-40" r="35" fill="url(#iconGrad)" opacity="0.3"/>
+    <path d="M -20,-60 L -10,-40 L 10,-40 L 20,-60 M -15,-40 L -15,-10 M 15,-40 L 15,-10 M -25,-10 L 25,-10 M -20,0 L 20,0 M -15,10 L 15,10" 
+          stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="0" cy="-50" r="8" fill="white"/>
+  </g>
+  
+  <!-- Brain/AI icon (right side) -->
+  <g transform="translate(1100, 150)">
+    <circle cx="0" cy="0" r="40" fill="url(#iconGrad)" opacity="0.2"/>
+    <!-- Neural network nodes -->
+    <circle cx="-25" cy="-15" r="6" fill="#4ade80"/>
+    <circle cx="-25" cy="15" r="6" fill="#4ade80"/>
+    <circle cx="0" cy="-20" r="6" fill="#60a5fa"/>
+    <circle cx="0" cy="0" r="6" fill="#60a5fa"/>
+    <circle cx="0" cy="20" r="6" fill="#60a5fa"/>
+    <circle cx="25" cy="-10" r="6" fill="#f472b6"/>
+    <circle cx="25" cy="10" r="6" fill="#f472b6"/>
+    <!-- Connections -->
+    <line x1="-25" y1="-15" x2="0" y2="-20" stroke="#4ade80" stroke-width="2" opacity="0.6"/>
+    <line x1="-25" y1="-15" x2="0" y2="0" stroke="#4ade80" stroke-width="2" opacity="0.6"/>
+    <line x1="-25" y1="15" x2="0" y2="0" stroke="#4ade80" stroke-width="2" opacity="0.6"/>
+    <line x1="-25" y1="15" x2="0" y2="20" stroke="#4ade80" stroke-width="2" opacity="0.6"/>
+    <line x1="0" y1="-20" x2="25" y2="-10" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+    <line x1="0" y1="0" x2="25" y2="-10" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+    <line x1="0" y1="0" x2="25" y2="10" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+    <line x1="0" y1="20" x2="25" y2="10" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+  </g>
+  
+  <!-- Main Title -->
+  <text x="600" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="48" font-weight="bold" 
+        fill="white" text-anchor="middle">
+    Skin Cancer Detection
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="160" font-family="'Segoe UI', Arial, sans-serif" font-size="24" 
+        fill="white" text-anchor="middle" opacity="0.9">
+    Deep Learning Research Framework
+  </text>
+  
+  <!-- Stats bar -->
+  <g transform="translate(600, 220)">
+    <rect x="-280" y="-25" width="560" height="50" rx="25" fill="white" opacity="0.15"/>
+    
+    <text x="-200" y="8" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="white" text-anchor="middle">
+      97.70% Accuracy
+    </text>
+    
+    <circle cx="-60" cy="0" r="3" fill="white" opacity="0.5"/>
+    
+    <text x="0" y="8" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="white" text-anchor="middle">
+      100+ Experiments
+    </text>
+    
+    <circle cx="130" cy="0" r="3" fill="white" opacity="0.5"/>
+    
+    <text x="220" y="8" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" 
+          fill="white" text-anchor="middle">
+      8 Architectures
+    </text>
+  </g>
+</svg>
