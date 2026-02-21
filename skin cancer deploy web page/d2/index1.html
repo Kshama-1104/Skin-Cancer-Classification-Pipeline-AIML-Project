@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skin Cancer Check (Webcam)</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;background:#0f172a;color:#e2e8f0}
+    .container{max-width:920px;margin:0 auto}
+    .card{background:#111827;border:1px solid #374151;border-radius:12px;padding:20px}
+    h1{margin:0 0 16px 0;font-size:22px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    video,canvas,img{width:100%;border-radius:8px;background:#000}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    button{background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px 14px;font-weight:600;cursor:pointer}
+    button.secondary{background:#374151}
+    .result{margin-top:16px;padding:12px;border-radius:8px;background:#0b1220;border:1px solid #1f2937}
+    .bar{height:10px;background:#1f2937;border-radius:999px;overflow:hidden;margin-top:8px}
+    .bar > div{height:100%;background:#ef4444;width:0%}
+    .footer{opacity:.8;margin-top:16px;font-size:12px}
+    input[type="file"]{display:none}
+    label.file{background:#374151;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Skin Cancer Screening (Camera)</h1>
+      <p>Use your camera to capture a clear photo of the skin lesion, then analyze.</p>
+
+      <div class="grid">
+        <div>
+          <video id="video" autoplay playsinline></video>
+          <div class="controls">
+            <button id="startBtn">Start Camera</button>
+            <button id="captureBtn" class="secondary">Capture</button>
+            <label for="fileInput" class="file">Choose Image</label>
+            <input id="fileInput" type="file" accept="image/*" />
+          </div>
+        </div>
+        <div>
+          <canvas id="canvas" width="640" height="480" style="display:none"></canvas>
+          <img id="preview" alt="Preview" />
+          <div class="controls">
+            <button id="analyzeBtn">Analyze</button>
+            <button id="resetBtn" class="secondary">Reset</button>
+          </div>
+          <div class="result" id="result" style="display:none">
+            <div><strong>Cancer likelihood:</strong> <span id="percent">0%</span></div>
+            <div class="bar"><div id="barFill"></div></div>
+            <div id="message" style="margin-top:8px"></div>
+            <div class="footer">Disclaimer: This is a preliminary screening tool. Always consult a qualified healthcare professional.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const preview = document.getElementById('preview');
+    const startBtn = document.getElementById('startBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const fileInput = document.getElementById('fileInput');
+    const resultBox = document.getElementById('result');
+    const percentEl = document.getElementById('percent');
+    const barFill = document.getElementById('barFill');
+    const messageEl = document.getElementById('message');
+
+    let stream = null;
+
+    async function startCamera(){
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
+        video.srcObject = stream;
+      } catch (err) {
+        alert('Unable to access camera: ' + err.message);
+      }
+    }
+
+    function captureFrame(){
+      const w = video.videoWidth || 640;
+      const h = video.videoHeight || 480;
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, w, h);
+      preview.src = canvas.toDataURL('image/jpeg', 0.95);
+    }
+
+    function dataURLToBlob(dataURL){
+      const arr = dataURL.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length; const u8arr = new Uint8Array(n);
+      while(n--){ u8arr[n] = bstr.charCodeAt(n); }
+      return new Blob([u8arr], { type: mime });
+    }
+
+    async function analyze(){
+      try {
+        let blob = null;
+        if (preview.src && preview.src.startsWith('data:')) {
+          blob = dataURLToBlob(preview.src);
+        } else if (fileInput.files && fileInput.files[0]) {
+          blob = fileInput.files[0];
+        } else {
+          alert('Please capture or choose an image first.');
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', blob, 'capture.jpg');
+
+        const resp = await fetch('http://localhost:5001/predict', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await resp.json();
+
+        resultBox.style.display = 'block';
+        const pct = Math.max(0, Math.min(100, Number(data.cancer_percentage || 0)));
+        percentEl.textContent = pct.toFixed(2) + '%';
+        barFill.style.width = pct + '%';
+        messageEl.textContent = data.message || '';
+      } catch (err) {
+        alert('Error analyzing image: ' + err.message);
+      }
+    }
+
+    startBtn.addEventListener('click', startCamera);
+    captureBtn.addEventListener('click', captureFrame);
+    analyzeBtn.addEventListener('click', analyze);
+    resetBtn.addEventListener('click', () => {
+      preview.src = '';
+      fileInput.value = '';
+      resultBox.style.display = 'none';
+      percentEl.textContent = '0%';
+      barFill.style.width = '0%';
+      messageEl.textContent = '';
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      preview.src = url;
+    });
+  </script>
+</body>
+</html>
+
+
